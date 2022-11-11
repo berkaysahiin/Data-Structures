@@ -17,6 +17,8 @@ void delete_key(Node** root, int key);
 void delete_tree(Node** root);
 void fill_in_array(Node* root, int* array, int* startIndex, int arraySize);
 void mirror(Node** root);
+void joint_ascending_order(Node** base, Node* other);
+void joint_descending_order(Node** base, Node* other);
 
 int get_max(Node* root);
 int get_min(Node* root);
