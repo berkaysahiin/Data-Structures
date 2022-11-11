@@ -102,6 +102,20 @@ void mirror(Node** root) {
   mirror(&(*root)->left);
 }
 
+void joint_ascending_order(Node** base, Node* other) {
+  if(other == NULL) return;
+  joint_ascending_order(base, other->left);
+  insert(base, other->key);
+  joint_ascending_order(base, other->right);
+}
+
+void joint_descending_order(Node** base, Node* other) {
+  if(other == NULL) return;
+  joint_descending_order(base, other->right);
+  insert(base, other->key);
+  joint_descending_order(base, other->left);
+}
+
 /*----------------------------------------------------------------------------------------------------------------------*/
 int is_height_balanced(Node* root) {
   if(root == NULL) return -1;
