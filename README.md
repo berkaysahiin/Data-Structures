@@ -1,6 +1,6 @@
 # Data-Structures
 
-This are some of the data structures that i implemented in C. There are also other worth-looking data structures that i learned but not implemented such as red-black trees and splay trees.
+These are some of the data structures that i implemented in C. There are also other worth-looking data structures that i learned but not implemented such as red-black trees and splay trees.
 
 Resources that i find helpful: 
 
