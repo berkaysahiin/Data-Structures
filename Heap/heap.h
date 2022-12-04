@@ -13,7 +13,7 @@ typedef struct heap heap;
 heap* init(int size); // initialize heap with given size.
 heap* heapify(int* arr, int size); // create a heap out of given array.
 
-//---------------------------HELPERS------------------------------------------
+//---------------------------PROPERTIES------------------------------------------
 int get_left_child(heap*, int);
 int get_right_child(heap*, int);
 int get_parent(heap*, int);
