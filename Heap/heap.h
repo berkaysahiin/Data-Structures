@@ -22,7 +22,7 @@ int peek(heap*); // get root without deleting it.
 int pop(heap**); // get root and delete it.
 int push(heap**, int); // push element to heap.
                        //
-void merge(heap** h1, heap** h2); // merge heap2 into heap 2. purge heap 2 afterwards
+void merge(heap** h1, heap** h2); // merge heap2 into heap 1. purge heap 2 afterwards
 void purge(heap** h);
 
 //------------------------PRIVATE--------------------------------------------
