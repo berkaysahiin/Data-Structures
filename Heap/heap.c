@@ -8,23 +8,16 @@
 #include "heap.h"
 
 int main() {
-  int arr[20];
+  int arr[10] = {19,721,17,29,31,90,66,44,22,91};
+  int arr2[10] = {12,71,699,102,689,762,164,629,712};
 
-  for(int i = 0; i < 20; i++) {
-    arr[i] = (11*i/13+29)*3;
-  }
+  heap* h1 = heapify(arr, 10);
+  heap* h2 = heapify(arr2, 10);
 
-  heap* h = heapify(arr, 20);
+  merge(&h1, &h2);
 
-  for(int i = 0; i < 10; i++) {
-    pop(&h);
-  }
-
-
-  print_as_tree(h);
-  printf("\n");
-  print_as_arr(h);
-  check(h);
+  print_as_tree(h1);
+  check(h1);
 }
 
 //---------------------------------------------------------------------------
@@ -87,6 +80,21 @@ heap* heapify(int* arr, int size) { // in this implementation, it copies arr int
   }
   return h;
 }
+
+void merge(heap** h1, heap** h2) { 
+  while(!is_empty(*h2)) {
+    push(h1, pop(h2));
+  }
+  free((*h2)->arr);
+  free(*h2);
+}
+
+
+void purge(heap** h) {
+  free((*h)->arr);
+  free(*h);
+}
+
 
 int get_left_child(heap* h, int index) {
  return 2*index + 1;
@@ -177,6 +185,7 @@ int peek(heap* h) {
 }
 
 int pop(heap** h) {
+  if(is_empty(*h)) return -1;
   int root = (*h)->arr[0]; // return value
   (*h)->arr[0] = (*h)->arr[(*h)->count - 1]; // set root as the last element of the arr
   (*h)->arr[(*h)->count - 1] = root;

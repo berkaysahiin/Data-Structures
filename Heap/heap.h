@@ -1,6 +1,3 @@
-#ifndef HEAP_HEAP_H
-#define HEAP_HEAP_H
-
 struct heap{
   int* arr;
   int size;
@@ -24,6 +21,9 @@ int is_empty(heap*);
 int peek(heap*); // get root without deleting it.
 int pop(heap**); // get root and delete it.
 int push(heap**, int); // push element to heap.
+                       //
+void merge(heap** h1, heap** h2); // merge heap2 into heap 2. purge heap 2 afterwards
+void purge(heap** h);
 
 //------------------------PRIVATE--------------------------------------------
 void sift_up(heap* h, int index);
@@ -34,6 +34,3 @@ void print_as_arr(heap*);
 void print_as_tree(heap*); // wrapper.
 void _print_as_tree(heap*, int, int);
 void check(heap*); // check if heap is violating properties of heap tree.
-
-
-#endif //HEAP_HEAP_H
