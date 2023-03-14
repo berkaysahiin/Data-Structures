@@ -15,43 +15,43 @@ int main() {
 
   clear_and_free(_stack);
 } 
-
+/*
+  Initialize stack with given capacity.
+  If capacity is less than or equal to zero returns NULL.
+*/
 Stack* init(int capacity) {
-  if(capacity == 0) {
+  if(capacity <= 0) {
     printf("Capacity cannot be lower or equal to zero");
     return NULL;
   }
-  Stack* new_stack = (Stack*)malloc(sizeof(Stack));
-  new_stack->arr = (int*)malloc(sizeof(int) * capacity);
-  new_stack->capacity = capacity;
-  new_stack->top = -1;
+  Stack* new_stack = (Stack*)malloc(sizeof(Stack)); // allocate struct Stack on heap.
+  new_stack->arr = (int*)malloc(sizeof(int) * capacity); // allocate array on heap with given capacity.
+  new_stack->capacity = capacity; 
+  new_stack->top = -1; // top is the index to last added element to the stack. if it is -1, it means stack the stack is empty.
   return new_stack;
 }
 
-Stack* clone(Stack stack) {
-  if(is_empty(stack) ) {
-    printf("Stack is empty. Returned NULL.");
-    return NULL;
-  }
-
-  Stack* clone = init(stack.capacity);
-  for(int i = 0; i < stack.top + 1; i++) {
-    push(clone, stack.arr[i]);
-  }
-  return clone;
-}
-
+/*
+  Remove the element of index top and return it. If top index is -1, since it means that the stack is empty, return -1.
+*/
 int pop(Stack* stack) {
-  if(is_empty(*stack)) return -1;
-  int rv = stack->arr[stack->top];
-  stack->top--;
+  if(is_empty(*stack)) return -1; // the case which the stack is empty.
+  
+  int return_value = stack->arr[stack->top]; // return value
+  stack->top--; // move top left.
+  
+  /* resize stack array if necessary */
   if(stack->top < stack->capacity / 4) {
     stack->capacity /= 2;
     stack->arr = (int*)realloc(stack->arr, stack->capacity * sizeof(int));
   }
-  return rv;
+  
+  return return_value;
 }
 
+/*
+  Similar to pop, but peek does not remove element, so the top index stands still.
+*/
 int peek(Stack stack) {
   if(is_empty(stack)) return -1;
   return stack.arr[stack.top];
@@ -65,6 +65,10 @@ int is_empty(Stack stack) {
   return stack.top == -1;
 }
 
+/*
+  Compare to stack element by element.
+  Does not compare the array capacity.
+*/
 int is_equal(Stack stack1, Stack stack2) {
   if(stack1.top != stack2.top) return 0;
   for(int i = 0; i < stack1.top; i++) {
@@ -140,6 +144,19 @@ void reverse(Stack* stack) {
   for(int j = 0; j < i; j++) {
     push(stack, temp[j]);
   }
+}
+
+Stack* clone(Stack stack) {
+  if(is_empty(stack) ) {
+    printf("Stack is empty. Returned NULL.");
+    return NULL;
+  }
+
+  Stack* clone = init(stack.capacity);
+  for(int i = 0; i < stack.top + 1; i++) {
+    push(clone, stack.arr[i]);
+  }
+  return clone;
 }
 
 
