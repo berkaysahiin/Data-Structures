@@ -15,6 +15,8 @@ int main() {
 
   clear_and_free(_stack);
 } 
+
+
 /*
   Initialize stack with given capacity.
   If capacity is less than or equal to zero returns NULL.
@@ -24,8 +26,9 @@ Stack* init(int capacity) {
     printf("Capacity cannot be lower or equal to zero");
     return NULL;
   }
-  Stack* new_stack = (Stack*)malloc(sizeof(Stack)); // allocate struct Stack on heap.
-  new_stack->arr = (int*)malloc(sizeof(int) * capacity); // allocate array on heap with given capacity.
+  
+  Stack* new_stack = malloc(sizeof(Stack)); // allocate struct Stack on heap.
+  new_stack->arr = malloc(sizeof(int) * capacity); // allocate array on heap with given capacity.
   new_stack->capacity = capacity; 
   new_stack->top = -1; // top is the index to last added element to the stack. if it is -1, it means stack the stack is empty.
   return new_stack;
