@@ -1,9 +1,11 @@
-typedef struct Node
+struct Node
 {
     int value;
     struct Node* next;
     struct Node* prev;
-}Node;
+};
+
+typedef struct Node Node;
 
 void doubly_linked_list_init(Node** tail, Node** head, int value);
 void doubly_linked_list_print_tail(Node* tail);
