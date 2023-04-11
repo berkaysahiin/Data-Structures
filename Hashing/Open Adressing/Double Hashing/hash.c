@@ -42,6 +42,7 @@ void insert_key(entry table[], int key)
     if(table[index].is_used == EMPTY || table[index].is_used == DELETED) break;
   }
 
+  // case where the hash table is full
   if(table[index].is_used == USED) {
     printf("Could not found a proper bucket to insert key: %d\n", key);
     return;
